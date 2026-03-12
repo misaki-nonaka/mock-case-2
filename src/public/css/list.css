@@ -1,0 +1,106 @@
+.content__inner {
+    padding: 50px 0;
+    width: 900px;
+}
+
+.page-index {
+    font-size: 30px;
+    font-weight: bold;
+    height: 40px;
+    line-height: 40px;
+    padding: 0 20px;
+    border-left: 8px solid #000000;
+}
+
+.list-top {
+    width: 100%;
+    height: 60px;
+    background-color: #FFFFFF;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 50px;
+}
+
+.prev-month, .next-month {
+    font-size: 16px;
+    font-weight: bold;
+    color: #737373;
+    display: block;
+    position: relative;
+}
+
+.prev-month::before, .next-month::before {
+    content: "";
+    background: url(../left-arrow.png);
+    background-size: contain;
+    position: absolute;
+    width: 20px;
+    height: 15px;
+    opacity: 0.3;
+}
+
+.prev-month::before {
+    left: -25px;
+    top: 5px;
+}
+
+.next-month::before {
+    right: -25px;
+    top: 5px;
+    rotate: 180deg;
+}
+
+.current-month {
+    font-size: 20px;
+    font-weight: bold;
+    display: block;
+    position: relative;
+}
+
+.current-month::before {
+    content: "";
+    background: url(../calender.png);
+    background-size: contain;
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    left: -35px;
+    top: 5px;
+}
+
+.list {
+    margin-top: 40px;
+    background-color: #FFFFFF;
+    border-radius: 10px;
+}
+
+.list table{
+    width: 100%;
+    text-align: center;
+    font-size: 16px;
+    font-weight: bold;
+    color: #737373;
+    table-layout: fixed;
+}
+
+.list th:nth-child(1), .list th:nth-child(6) {
+    width: 25%;
+}
+
+.list tr {
+    height: 45px;
+}
+
+.list tr:not(:last-child) {
+    border-bottom: 3px solid #E1E1E1;
+}
+
+.list tr:first-child {
+    border-bottom: 2px solid #E1E1E1;
+}
+
+.list-detail, .list-detail a {
+    color: #000000;
+}

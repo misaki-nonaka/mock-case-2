@@ -1,0 +1,71 @@
+body {
+    height: 100vh;;
+}
+
+.content__inner {
+    text-align: center;
+    padding: 50px;
+}
+
+.status {
+    width: 100px;
+    height: 40px;
+    background: #C8C8C8;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+}
+
+.status p {
+    font-size: 18px;
+    font-weight: bold;
+    color: #696969;
+}
+
+.date p {
+    font-size: 40px;
+    margin: 32px auto;
+}
+
+.time p {
+    font-size: 80px;
+    font-weight: bold;
+    margin: 0 auto;
+}
+
+.attendance-button {
+    margin: 40px auto 0;
+}
+
+.attendance-button form {
+    display: flex;
+    justify-content: center;
+    gap: 82px;
+}
+
+.attendance-button button {
+    width: 221px;
+    height: 77px;
+    border: none;
+    border-radius: 20px;
+    font-size: 32px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.attendance-button__check {
+    color: #FFFFFF;
+    background: #000000;
+}
+
+.attendance-button__rest {
+    color: #000000;
+    background: #FFFFFF;
+}
+
+.check-out-message {
+    font-size: 26px;
+    font-weight: bold;
+}

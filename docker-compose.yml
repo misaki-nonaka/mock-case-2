@@ -15,8 +15,8 @@ services:
     build:
       context: ./docker/php
       args:
-        UID: ${UID}
-        GID: ${GID}
+        UID: ${UID:-1000}
+        GID: ${GID:-1000}
     volumes:
       - ./src:/var/www/
 
@@ -32,6 +32,7 @@ services:
     volumes:
       - ./docker/mysql/data:/var/lib/mysql
       - ./docker/mysql/my.cnf:/etc/mysql/conf.d/my.cnf
+      - ./docker/mysql/init:/docker-entrypoint-initdb.d
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
@@ -44,3 +45,8 @@ services:
       - mysql
     ports:
       - 8080:80
+
+  mailhog:
+    image: mailhog/mailhog
+    ports:
+      - 8025:8025
