@@ -9,9 +9,9 @@
     <div class="content__inner">
         <h1 class="page-index">勤怠一覧</h1>
         <div class="list-top">
-            <a href="{{ route('list', ['date' => $prevMonth] ) }}" class="prev-month link">前月</a>
+            <a href="{{ route('attendance.list', ['date' => $prevMonth] ) }}" class="prev-month link">前月</a>
             <p class="current-month">{{$currentDate->format('Y/m')}}</p>
-            <a href="{{ route('list', ['date' => $nextMonth] ) }}" class="next-month link">翌月</a>
+            <a href="{{ route('attendance.list', ['date' => $nextMonth] ) }}" class="next-month link">翌月</a>
         </div>
 
         <div class="list">
@@ -30,9 +30,9 @@
                     @endphp
 
                     <tr>
-                        <td>{{$date->isoFormat('MM月DD日(ddd)')}}</td>
-                        <td>{{ $attendance?->check_in_time }}</td>
-                        <td>{{ $attendance?->check_out_time }}</td>
+                        <td>{{ $date->isoFormat('MM月DD日(ddd)') }}</td>
+                        <td>{{ $attendance ? $attendance->check_in_time_formatted : null }}</td>
+                        <td>{{ $attendance ? $attendance->check_out_time_formatted : null }}</td>
                         <td>{{ $attendance?->totalRestTime() }}</td>
                         <td>{{ $attendance?->workTime() }}</td>
                         <td class="list-detail">

@@ -14,7 +14,7 @@
 <body>
     <header class="header">
         <div class="header__logo">
-            <a href="/"><img src="/COACHTECHヘッダーロゴ.png" alt=""></a>
+            <a href="/attendance"><img src="/COACHTECHヘッダーロゴ.png" alt=""></a>
         </div>
         
         @if( !in_array(Route::currentRouteName(), ['verification.notice']) )

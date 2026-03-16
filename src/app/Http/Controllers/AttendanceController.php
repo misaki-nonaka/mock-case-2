@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Attendance;
 use App\Models\Rest;
+use App\Models\CorrectionRequest;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
 use Carbon\CarbonPeriod;
@@ -78,5 +79,16 @@ class AttendanceController extends Controller
         return view('list', compact('attendances', 'currentDate', 'prevMonth', 'nextMonth', 'period'));
     }
 
-    
+    public function detail($attendance_id){
+        $requestAvailable = !CorrectionRequest::where('attendance_id', $attendance_id)->exists();
+
+        if($requestAvailable){
+            $attendance = Attendance::with(['user', 'rests'])->findOrFail($attendance_id);
+        }
+        else{
+            $attendance = CorrectionRequest::with('user', 'attendanceCorrection', 'restCorrections')->where('attendance_id', $attendance_id)->first();
+        }
+
+        return view('detail', compact('attendance', 'requestAvailable'));
+    }
 }

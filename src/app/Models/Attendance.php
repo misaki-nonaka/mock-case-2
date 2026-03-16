@@ -68,4 +68,18 @@ class Attendance extends Model
 
         return sprintf('%02d:%02d', $hours, $mins);
     }
+
+    public function getCheckInTimeFormattedAttribute()
+    {
+        return $this->check_in_time
+            ? Carbon::parse($this->check_in_time)->format('H:i')
+            : null;
+    }
+
+    public function getCheckOutTimeFormattedAttribute()
+    {
+        return $this->check_out_time
+            ? Carbon::parse($this->check_out_time)->format('H:i')
+            : null;
+    }
 }

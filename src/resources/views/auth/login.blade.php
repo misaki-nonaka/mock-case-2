@@ -23,6 +23,6 @@
         @enderror
     </div>
     <button class="btn btn--big">ログインする</button>
-    <a href="/register" class="link">会員登録はこちら</a>
+    <a href="/register" class="link authentication-link">会員登録はこちら</a>
 </form>
 @endsection

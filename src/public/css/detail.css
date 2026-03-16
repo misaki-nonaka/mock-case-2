@@ -1,0 +1,87 @@
+.attendance-detail {
+    width: 100%;
+    margin: 0 auto;
+}
+
+.detail-table {
+    width: 100%;
+    font-size: 16px;
+    font-weight: bold;
+    border-collapse: collapse;
+    margin-top: 40px;
+    background-color: #FFFFFF;
+    border-radius: 10px;
+}
+
+.detail-table tr {
+    border-bottom: 2px solid #E1E1E1;
+}
+
+.detail-table th {
+    color: #737373;
+    text-align: left;
+    width: 330px;
+    padding: 0 60px;
+}
+
+.detail-table td {
+    padding: 20px;
+}
+
+.detail-table__date span:nth-child(1) {
+    margin-right: 160px;
+}
+
+.detail-table__time-row {
+    display: flex;
+    align-items: center;
+    gap: 50px;
+}
+
+.detail-table__time-row input {
+    width: 100px;
+    padding: 6px;
+    border: 1px solid #E1E1E1;
+    border-radius: 4px;
+    font-family: sans-serif;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.detail-table textarea {
+    width: 316px;
+    height: 72px;
+    padding: 10px;
+    border: 1px solid #D9D9D9;
+    border-radius: 4px;
+    resize: none;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.detail-table__time-row input[readonly], .detail-table textarea[readonly] {
+    border: none;
+}
+
+.submit-button {
+    width: 100%;
+    margin: 25px auto;
+    text-align: right;
+}
+
+.submit-button button {
+    background: #000000;
+    color: #FFFFFF;
+    border: none;
+    padding: 10px 40px;
+    border-radius: 5px;
+    font-size: 22px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.request-message {
+    font-size: 18px;
+    font-weight: bolder;
+    color: #FF000080;
+}

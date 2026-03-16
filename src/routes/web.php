@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AttendanceController;
+use App\Http\Controllers\RequestController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,7 +24,9 @@ Route::post('/login', [AuthController::class, 'login']);
 Route::middleware(['auth', 'verified'])->group(function(){
     Route::get('/attendance', [AttendanceController::class, 'attendance']);
     Route::post('/attendance/register', [AttendanceController::class, 'register']);
-    Route::get('/attendance/list', [AttendanceController::class, 'list'])->name('list');
-    Route::get('/attendance/detail/{attendance_id}'. [AttendanceController::class, 'detail']);
+    Route::get('/attendance/list', [AttendanceController::class, 'list'])->name('attendance.list');
+    Route::get('/attendance/detail/{attendance_id}', [AttendanceController::class, 'detail'])->name('detail');
+    Route::post('/attendance/request', [RequestController::class, 'register']);
+    Route::get('/stamp_correction_request/list', [RequestController::class, 'list']);
 });
 

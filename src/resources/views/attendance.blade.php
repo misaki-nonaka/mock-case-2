@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-<div class="content">
+<div class="content center">
     <div class="content__inner">
         <div class="status">
             <p>

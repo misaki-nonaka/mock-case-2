@@ -1,0 +1,26 @@
+.tab-list {
+    width: 100%;
+    height: 45px;
+    margin-top: 45px;
+    border-bottom: 1px solid #000000;
+}
+
+.tab-list__inner {
+    width: 100%;
+    display: flex;
+    list-style: none;
+    padding-left: 55px;
+}
+
+.tab-list__item {
+    margin-right: 100px;
+}
+
+.tab-list__link {
+    font-size: 16px;
+    color: #000000;
+}
+
+.tab-list__link.active {
+    font-weight: bold;
+}

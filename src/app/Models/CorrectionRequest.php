@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Request extends Model
+class CorrectionRequest extends Model
 {
     use HasFactory;
 
@@ -19,11 +19,21 @@ class Request extends Model
 
     public function attendanceCorrection()
     {
-        $this->hasOne('App\Models\AttendanceCorrection');
+        return $this->hasOne('App\Models\AttendanceCorrection');
     }
 
     public function restCorrections()
     {
-        $this->hasMany('App\Models\RestCorrection');
+        return $this->hasMany('App\Models\RestCorrection');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo('App\Models\User');
+    }
+
+    public function attendance()
+    {
+        return $this->belongsTo('App\Models\Attendance');
     }
 }
