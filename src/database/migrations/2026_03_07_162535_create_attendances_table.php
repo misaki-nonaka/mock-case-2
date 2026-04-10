@@ -20,6 +20,7 @@ class CreateAttendancesTable extends Migration
             $table->time('check_in_time')->nullable();
             $table->time('check_out_time')->nullable();
             $table->string('status');
+            $table->string('remark')->nullable();
             $table->timestamps();
         });
     }

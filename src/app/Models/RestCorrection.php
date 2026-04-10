@@ -17,6 +17,11 @@ class RestCorrection extends Model
         'rest_end_time',
     ];
 
+    protected $casts = [
+        'rest_start_time' => 'datetime',
+        'rest_end_time' => 'datetime',
+    ];
+
     public function getRestStartFormattedAttribute()
     {
         return $this->rest_start_time

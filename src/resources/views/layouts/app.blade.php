@@ -31,15 +31,15 @@
                     <a href="/stamp_correction_request/list" class="header-nav__link">申請一覧</a>
                 </li>
                 <li class="header-nav__item">
-                    <form action="/logout" method="post" class="header-nav__form">
+                    <form action="/admin/logout" method="post" class="header-nav__form">
                     @csrf
                         <button class="header-nav__button">ログアウト</button>
                     </form>
-                </li>                
+                </li>
             </ul>
         @endif
 
-        @if (Auth::check())
+        @if (Auth::guard('web')->check())
             <ul class="header-nav__inner">
                 <li class="header-nav__item">
                     <a href="/attendance" class="header-nav__link">勤怠</a>

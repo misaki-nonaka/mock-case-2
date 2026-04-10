@@ -26,9 +26,11 @@ class RequestController extends Controller
             'check_out_time' => $request->check_out_time,
         ]);
 
-        $rests = collect($request->rests ?? [])->map(function ($restData, $restId) {
+        $rests = $request->rests ?? [];
+        foreach($rests as $restId => $restData) {
+
             if (empty($restData['rest_start_time']) && empty($restData['rest_end_time'])) {
-                return null;
+                continue;
             }
 
             $data = [
@@ -40,11 +42,8 @@ class RequestController extends Controller
                 $data['rest_id'] = $restId;
             }
 
-            return $data;
-        })
-        ->filter()->values()->all();
-
-        $correctionRequest->restCorrections()->createMany($rests);
+            $correctionRequest->restCorrections()->create($data);
+        }
         
         return redirect()->route('detail', $attendance->id);
     }
@@ -53,11 +52,22 @@ class RequestController extends Controller
         $userId = Auth::id();
         $activeTab = $request->query('page', 'waiting');
 
-        if($request->page == 'complete'){
-            $correctionRequests = CorrectionRequest::where('user_id', $userId)->where('status', '承認済み')->get();
+        if (auth('admin')->check()) {
+            if($request->page == 'complete'){
+                $correctionRequests = CorrectionRequest::where('status', '承認済み')->get();
+            }
+            else{
+                $correctionRequests = CorrectionRequest::where('status', '承認待ち')->get();
+            }
         }
+
         else{
-            $correctionRequests = CorrectionRequest::where('user_id', $userId)->where('status', '承認待ち')->get();
+            if($request->page == 'complete'){
+                $correctionRequests = CorrectionRequest::where('user_id', $userId)->where('status', '承認済み')->get();
+            }
+            else{
+                $correctionRequests = CorrectionRequest::where('user_id', $userId)->where('status', '承認待ち')->get();
+            }
         }
 
         return view('request-list', compact('activeTab', 'correctionRequests'));

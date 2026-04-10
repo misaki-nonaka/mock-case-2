@@ -5,6 +5,7 @@
 @endsection
 
 @section('content')
+{{ dd(get_class($correctionRequest->attendance->work_date)) }}
 <div class="content">
     <div class="content__inner">
         <h1 class="page-index">申請一覧</h1>
@@ -33,11 +34,7 @@
                         <td>{{ $correctionRequest->remark }}</td>
                         <td>{{ $correctionRequest->request_date->format('Y/m/d') }}</td>
                         <td class="list-detail">
-                            @if(Auth::guard('admin')->check())
-                                <a href="/stamp_correction_request/approve/{{$correctionRequest->id}}" class="link">詳細</a>
-                            @else
-                                <a href="/attendance/detail/{{$correctionRequest->attendance_id}}" class="link">詳細</a>
-                            @endif
+                            <a href="/stamp_correction_request/approve/{{$correctionRequest->id}}" class="link">詳細</a>
                         </td>
                     </tr>
                 @endforeach

@@ -16,6 +16,11 @@ class AttendanceCorrection extends Model
         'check_out_time',
     ];
 
+    protected $casts = [
+        'check_in_time' => 'datetime',
+        'check_out_time' => 'datetime',
+    ];
+
     public function getCheckInTimeFormattedAttribute()
     {
         return $this->check_in_time

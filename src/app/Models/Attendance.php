@@ -16,6 +16,13 @@ class Attendance extends Model
         'check_in_time',
         'check_out_time',
         'status',
+        'remark',
+    ];
+
+    protected $casts = [
+        'work_date' => 'date',
+        'check_in_time' => 'datetime',
+        'check_out_time' => 'datetime',
     ];
 
     public function rests()

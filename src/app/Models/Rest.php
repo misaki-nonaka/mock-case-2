@@ -16,6 +16,11 @@ class Rest extends Model
         'rest_end_time',
     ];
 
+    protected $casts = [
+        'rest_start_time' => 'datetime',
+        'rest_end_time' => 'datetime',
+    ];
+
     public function attendanceCorrection()
     {
         $this->hasOne('App\Models\AttendanceCorrection');

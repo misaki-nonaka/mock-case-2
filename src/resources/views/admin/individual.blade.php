@@ -7,11 +7,11 @@
 @section('content')
 <div class="content">
     <div class="content__inner">
-        <h1 class="page-index">勤怠一覧</h1>
+        <h1 class="page-index">{{ $user->name }}さんの勤怠</h1>
         <div class="list-top">
-            <a href="{{ route('attendance.list', ['date' => $prevMonth] ) }}" class="list-top__prev link">前月</a>
+            <a href="{{ route('admin.individual', ['id' => $user->id, 'date' => $prevMonth] ) }}" class="list-top__prev link">前月</a>
             <p class="list-top__current">{{$currentDate->format('Y/m')}}</p>
-            <a href="{{ route('attendance.list', ['date' => $nextMonth] ) }}" class="list-top__next link">翌月</a>
+            <a href="{{ route('admin.individual', ['id' => $user->id, 'date' => $nextMonth] ) }}" class="list-top__next link">翌月</a>
         </div>
 
         <div class="list">
@@ -37,7 +37,7 @@
                         <td>{{ $attendance?->workTime() }}</td>
                         <td class="list-detail">
                             @if($attendance)
-                                <a href="/attendance/detail/{{$attendance->id}}" class="link">詳細</a>
+                                <a href="/admin/attendance/{{$attendance->id}}" class="link">詳細</a>
                             @else
                                 詳細
                             @endif
@@ -45,6 +45,14 @@
                     </tr>
                 @endforeach
             </table>
+        </div>
+        <div class="export-form">
+            <form action="/admin/export/{{$user->id}}/{{$currentDate}}" method="post">
+            @csrf
+                <div class="submit-button">
+                    <button type="submit">CSV出力</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>

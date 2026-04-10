@@ -17,14 +17,38 @@ class UserSeeder extends Seeder
     {
         $param = [
             [
-                'name' => '田中太郎',
-                'email' => 'sample1@sample.com',
+                'name' => '西伶奈',
+                'email' => 'reina.nishi@coachtech.com',
                 'password' => Hash::make('password'),
                 'email_verified_at' => now(),
             ],
             [
-                'name' => '山田花子',
-                'email' => 'sample2@sample.com',
+                'name' => '山田太郎',
+                'email' => 'taro.yamada@coachtech.com',
+                'password' => Hash::make('password'),
+                'email_verified_at' => now(),
+            ],
+            [
+                'name' => '増田一世',
+                'email' => 'issei.masuda@coachtech.com',
+                'password' => Hash::make('password'),
+                'email_verified_at' => now(),
+            ],
+            [
+                'name' => '山本敬吉',
+                'email' => 'keikichi.yamamoto@coachtech.com',
+                'password' => Hash::make('password'),
+                'email_verified_at' => now(),
+            ],
+            [
+                'name' => '秋田朋美',
+                'email' => 'tomomi.akita@coachtech.com',
+                'password' => Hash::make('password'),
+                'email_verified_at' => now(),
+            ],
+            [
+                'name' => '中西教夫',
+                'email' => 'norio.nakanishi@coachtech.com',
                 'password' => Hash::make('password'),
                 'email_verified_at' => now(),
             ],

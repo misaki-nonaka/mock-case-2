@@ -17,6 +17,10 @@ class CorrectionRequest extends Model
         'request_date',
     ];
 
+    protected $casts = [
+        'request_date' => 'date',
+    ]; 
+
     public function attendanceCorrection()
     {
         return $this->hasOne('App\Models\AttendanceCorrection');

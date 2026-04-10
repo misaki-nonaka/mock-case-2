@@ -9,7 +9,7 @@
     padding: 20px 50px;
 }
 
-.prev-month, .next-month {
+.list-top__prev, .list-top__next {
     font-size: 16px;
     font-weight: bold;
     color: #737373;
@@ -17,7 +17,7 @@
     position: relative;
 }
 
-.prev-month::before, .next-month::before {
+.list-top__prev::before, .list-top__next::before {
     content: "";
     background: url(../left-arrow.png);
     background-size: contain;
@@ -27,25 +27,25 @@
     opacity: 0.3;
 }
 
-.prev-month::before {
+.list-top__prev::before {
     left: -25px;
     top: 5px;
 }
 
-.next-month::before {
+.list-top__next::before {
     right: -25px;
     top: 5px;
     rotate: 180deg;
 }
 
-.current-month {
+.list-top__current {
     font-size: 20px;
     font-weight: bold;
     display: block;
     position: relative;
 }
 
-.current-month::before {
+.list-top__current::before {
     content: "";
     background: url(../calender.png);
     background-size: contain;

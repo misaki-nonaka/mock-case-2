@@ -4,18 +4,12 @@
 <link rel="stylesheet" href="{{ asset('css/detail.css') }}">
 @endsection
 
-@php
-    $date = $requestAvailable ? $attendance->work_date : $attendance->attendance->work_date;
-    $attendanceTime = $requestAvailable ? $attendance : $attendance->attendanceCorrection;
-    $restTimes = $requestAvailable ? $attendance->rests : $attendance->restCorrections;
-@endphp
-
 @section('content')
 <div class="content">
     <div class="content__inner">
         <h1 class="page-index">勤怠詳細</h1>
         <div class="attendance-detail">
-            <form action="/attendance/request" method="post">
+            <form action={{ Auth::guard('admin')->check() ? "/admin/attendance/correction" : "/attendance/request" }} method="post">
             @csrf
                 @if($requestAvailable ==true)
                     <input type="hidden" name="attendance_id" value="{{ $attendance->id }}">
@@ -28,17 +22,17 @@
                     <tr>
                         <th>日付</th>
                         <td class="detail-table__date">
-                            <span>{{ \Carbon\Carbon::parse($date)->isoFormat('YYYY年') }}</span>
-                            <span>{{ \Carbon\Carbon::parse($date)->isoFormat('MM月DD日') }}</span>
+                            <span>{{ \Carbon\Carbon::parse($attendance->work_date)->isoFormat('YYYY年') }}</span>
+                            <span>{{ \Carbon\Carbon::parse($attendance->work_date)->Format('n月j日') }}</span>
                         </td>
                     </tr>
                     <tr>
                         <th>出勤・退勤</th>
                         <td>
                             <div class="detail-table__time-row">
-                                    <input type="time" name="check_in_time" value="{{ old('check_in_time', $attendanceTime->check_in_time_formatted )}}" {{$requestAvailable == false ? 'readonly' : ''}}>
+                                    <input type="time" name="check_in_time" value="{{ old('check_in_time', $attendance->check_in_time_formatted )}}" {{$requestAvailable == false ? 'readonly' : ''}}>
                                     <span class="wave">～</span>
-                                    <input type="time" name="check_out_time" value="{{ old('check_out_time', $attendanceTime->check_out_time_formatted) }}" {{$requestAvailable == false ? 'readonly' : ''}}>
+                                    <input type="time" name="check_out_time" value="{{ old('check_out_time', $attendance->check_out_time_formatted) }}" {{$requestAvailable == false ? 'readonly' : ''}}>
                             </div>
                             <div class="form__error">
                                 @error('check_in_time')
@@ -50,7 +44,7 @@
                             </div>
                         </td>
                     </tr>
-                    @foreach($restTimes as $rest)
+                    @foreach($attendance->rests as $rest)
                         <tr>
                             <th>{{ $loop->first ? '休憩' : '休憩'.$loop->iteration }}</th>
                             <td>
@@ -92,7 +86,7 @@
                     @endif
                     <tr>
                         <th>備考</th>
-                        <td><textarea name="remark" {{ $requestAvailable==false ? "readonly" : ""}}>{{ old('remark'), $requestAvailable == false ? $attendance->remark : '' }}</textarea>
+                        <td><textarea name="remark" {{ $requestAvailable==false ? "readonly" : ""}}>{{ old('remark', $attendance->remark )}}</textarea>
                         <div class="form__error">
                             @error("remark")
                                 {{ $message }}
@@ -105,7 +99,11 @@
                     @if($requestAvailable == true)
                         <button type="submit">修正</button>
                     @else
-                        <p class="request-message">*承認待ちのため修正はできません。</p>
+                        @if($requestStatus == 'waiting')
+                            <p class="request-message">*承認待ちのため修正はできません。</p>
+                        @else
+                            <p class="request-message">*修正が承認済みのため変更できません。</p>
+                        @endif
                     @endif
                 </div>
             </form>

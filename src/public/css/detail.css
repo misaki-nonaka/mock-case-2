@@ -28,6 +28,10 @@
     padding: 20px;
 }
 
+.detail-table p{
+    margin: 7px 0;
+}
+
 .detail-table__date span:nth-child(1) {
     margin-right: 160px;
 }
@@ -63,22 +67,6 @@
     border: none;
 }
 
-.submit-button {
-    width: 100%;
-    margin: 25px auto;
-    text-align: right;
-}
-
-.submit-button button {
-    background: #000000;
-    color: #FFFFFF;
-    border: none;
-    padding: 10px 40px;
-    border-radius: 5px;
-    font-size: 22px;
-    font-weight: bold;
-    cursor: pointer;
-}
 
 .request-message {
     font-size: 18px;

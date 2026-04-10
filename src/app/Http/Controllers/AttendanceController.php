@@ -50,7 +50,8 @@ class AttendanceController extends Controller
                 'status' => "出勤中",
             ]);
             Rest::where('attendance_id', $attendanceId)
-            ->whereNull('rest_end_time')            ->latest()->first()->update([
+            ->whereNull('rest_end_time')
+            ->latest()->first()->update([
                 'rest_end_time' => now(),
             ]);
         }
@@ -69,7 +70,7 @@ class AttendanceController extends Controller
         $attendances = Attendance::with('rests')->where('user_id', $userId)
             ->whereBetween('work_date', [$start, $end])
             ->get()
-            ->keyBy('work_date');
+            ->keyBy(fn($a) => $a->work_date->format('Y-m-d'));
 
         $period = CarbonPeriod::create($start, $end);
 
@@ -81,14 +82,17 @@ class AttendanceController extends Controller
 
     public function detail($attendance_id){
         $requestAvailable = !CorrectionRequest::where('attendance_id', $attendance_id)->exists();
-
-        if($requestAvailable){
-            $attendance = Attendance::with(['user', 'rests'])->findOrFail($attendance_id);
+        
+        if($requestAvailable == false){
+            $correction = CorrectionRequest::where('attendance_id', $attendance_id)->first();
+            $requestStatus = $correction->status == '承認待ち' ? 'waiting' : 'stamp';
         }
         else{
-            $attendance = CorrectionRequest::with('user', 'attendanceCorrection', 'restCorrections')->where('attendance_id', $attendance_id)->first();
+            $requestStatus = null;
         }
 
-        return view('detail', compact('attendance', 'requestAvailable'));
+        $attendance = Attendance::with(['user', 'rests'])->findOrFail($attendance_id);
+
+        return view('detail', compact('attendance', 'requestAvailable', 'requestStatus'));
     }
 }

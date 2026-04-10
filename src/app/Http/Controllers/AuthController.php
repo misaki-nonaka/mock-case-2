@@ -11,6 +11,7 @@ class AuthController extends Controller
 {
     public function login(LoginRequest $request)
     {
+        Auth::guard('admin')->logout();
 
         $credentials = $request->only('email', 'password');
 
@@ -28,5 +29,20 @@ class AuthController extends Controller
         }
 
         return redirect()->intended('/attendance');
+    }
+
+    public function adminLogin(LoginRequest $request){
+        Auth::guard('web')->logout();
+
+        $credentials = $request->only('email', 'password');
+
+        if (!Auth::guard('admin')->attempt($credentials)){
+            throw ValidationException::withMessages([
+                'password' => ['ログイン情報が登録されていません'],
+            ]);
+        }
+
+        return redirect('/admin/attendance/list');
+
     }
 }
