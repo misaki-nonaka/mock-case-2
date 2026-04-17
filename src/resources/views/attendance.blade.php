@@ -17,7 +17,7 @@
             </p>
         </div>
         <div class="date">
-            <p>{{ \Carbon\Carbon::now()->isoFormat('YYYY年MM月DD日(ddd)') }}</p>
+            <p>{{ now()->isoFormat('YYYY年M月D日(ddd)') }}</p>
         </div>
         <div class="time">
             <p id="realtime-clock">
@@ -27,7 +27,8 @@
                 function updateTime() {
                     const now = new Date();
 
-                    const formattedTime =                     ('0' + now.getHours()).slice(-2) + ':' +
+                    const formattedTime =
+                        ('0' + now.getHours()).slice(-2) + ':' +
                         ('0' + now.getMinutes()).slice(-2);
 
                     document.getElementById('realtime-clock').innerText = formattedTime;

@@ -27,7 +27,7 @@ class ExportController extends Controller
                 foreach($rests as $index => $rest) {
                     if($index == 0) {
                         $csvData[] = [
-                            $attendance->work_date,
+                            $attendance->work_date->format('Y/m/d'),
                             Carbon::parse($attendance->check_in_time)?->format('H:i'),
                             Carbon::parse($attendance->check_out_time)?->format('H:i'),
                             Carbon::parse($rest->rest_start_time)?->format('H:i'),
@@ -49,7 +49,7 @@ class ExportController extends Controller
             }
             else {
                 $csvData[] = [
-                    $attendance->work_date,
+                    $attendance->work_date->format('Y/m/d'),
                     Carbon::parse($attendance->check_in_time)?->format('H:i'),
                     Carbon::parse($attendance->check_out_time)?->format('H:i'),
                     '',

@@ -52,6 +52,10 @@
     font-weight: bold;
 }
 
+.detail-table__time-row p {
+    width: 100px;
+}
+
 .detail-table textarea {
     width: 316px;
     height: 72px;

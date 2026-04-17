@@ -22,8 +22,8 @@
                     <tr>
                         <th>日付</th>
                         <td class="detail-table__date">
-                            <span>{{ \Carbon\Carbon::parse($attendance->work_date)->isoFormat('YYYY年') }}</span>
-                            <span>{{ \Carbon\Carbon::parse($attendance->work_date)->Format('n月j日') }}</span>
+                            <span>{{ $attendance->work_date->isoFormat('YYYY年') }}</span>
+                            <span>{{ $attendance->work_date->Format('n月j日') }}</span>
                         </td>
                     </tr>
                     <tr>

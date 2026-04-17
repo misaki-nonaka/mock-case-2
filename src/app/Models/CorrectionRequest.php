@@ -19,7 +19,7 @@ class CorrectionRequest extends Model
 
     protected $casts = [
         'request_date' => 'date',
-    ]; 
+    ];
 
     public function attendanceCorrection()
     {

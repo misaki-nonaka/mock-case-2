@@ -6,8 +6,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Attendance;
 use App\Models\CorrectionRequest;
-use App\Models\AttendanceCorrection;
-use App\Models\RestCorrection;
 use App\Http\Requests\RequestRegisterRequest;
 
 class RequestController extends Controller

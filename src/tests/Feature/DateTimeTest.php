@@ -21,7 +21,7 @@ class DateTimeTest extends TestCase
         $response = $this->get('/attendance');
         $response->assertStatus(200);
 
-        $date = Carbon::now()->isoFormat('YYYY年MM月DD日(ddd)');
+        $date = Carbon::now()->isoFormat('YYYY年M月D日(ddd)');
         $time = Carbon::now()->format('H:i');
 
         $response->assertSee($date);
